@@ -17,6 +17,11 @@ pipeline{
                 sh 'npm install'
             }
         }
+        stage('Run Tests') {
+            steps {
+                bat 'npm test'
+            }
+        }
         stage('Deploy'){
             steps{
                 sh 'curl -X POST https://api.render.com/deploy/srv-cvkig78dl3ps738jqu2g?key=6eQWxwgwtGM'
