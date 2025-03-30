@@ -8,6 +8,7 @@ const config = require('./_config');
 let index = require('./routes/index');
 let image = require('./routes/image');
 
+const app = express();
 
 // connecting the database
 
@@ -29,7 +30,7 @@ db.once('open', ()=>{
 })
 */
 // Initializing the app
-const app = express();
+
 
 
 // View Engine
