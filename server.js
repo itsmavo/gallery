@@ -6,9 +6,16 @@ const path = require('path');
 // Define routes
 let index = require('./routes/index');
 let image = require('./routes/image');
+const { config } = require('process');
 
 // connecting the database
-let mongodb_url = 'mongodb://127.0.0.1:27017/';
+
+const MONGODB_URI = process.env.MONGODB_URI || config.mongoURI[app.settings.env]
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true }, (err)=>{
+    if (err) {console.log(err)} else console.log('Database connected successfully')
+});
+
+/*let mongodb_url = 'mongodb://127.0.0.1:27017/';
 let dbName = 'darkroom';
 mongoose.connect(`${mongodb_url}${dbName}`,{ useNewUrlParser: true , useUnifiedTopology: true }, (err)=>{
     if (err) console.log(err)
@@ -19,7 +26,7 @@ let db = mongoose.connection;
 db.once('open', ()=>{
     console.log('Database connected successfully')
 })
-
+*/
 // Initializing the app
 const app = express();
 
